@@ -1,0 +1,36 @@
+{
+  "name": "ts-node-ecommerce-api",
+  "version": "1.0.0",
+  "description": "RESTful API for e-commerce platform. This API is responsible for managing products, handling user authentication and processing orders. The goal is to create a scalable ecure and efficient API that adheres to RESTful principles",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/potterinc/ts-node-ecommerce-api.git"
+  },
+  "keywords": [
+    "e-commerce",
+    "api",
+    "backend",
+    "rest-api",
+    "nodejs",
+    "mongodb",
+    "express"
+  ],
+  "author": "Arekhandia Harry",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/potterinc/ts-node-ecommerce-api/issues"
+  },
+  "homepage": "https://github.com/potterinc/ts-node-ecommerce-api#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "helmet": "^7.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.1.0"
+  }
+}
