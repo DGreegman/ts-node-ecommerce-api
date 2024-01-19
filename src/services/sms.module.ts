@@ -1,9 +1,9 @@
 import twilio from 'twilio';
-import Config from '../config/app.config';
+import AppConfig from '../config/app.config';
 
 
 // Initializing SMS plugin
-const client = twilio(Config.SMS.accountSID, Config.SMS.authToken);
+const client = twilio(AppConfig.SMS.accountSID, AppConfig.SMS.authToken);
 
 /**
  * @param recipient  - Must be a E.164 format (ex: +2348123456789)
@@ -43,7 +43,7 @@ const sendSMS = async (recipient: string,
     // Sending SMS
     return await client.messages.create({
         body: SMS.message,
-        from: Config.SMS.sender,
+        from: AppConfig.SMS.sender,
         to: SMS.recipient
     })
         .then(message => console.log(`Message sent to recepient: ${message.to}`))

@@ -1,6 +1,6 @@
 import { Router, Request, Response } from 'express';
-import UserProfile from '../controllers/user.module';
-import OrderModule from '../controllers/order.module';
+import UserProfile from '../services/user.module';
+import OrderModule from '../services/order.module';
 import JWT_AUTH from '../middlewares/auth.middleware';
 
 const user = new UserProfile;

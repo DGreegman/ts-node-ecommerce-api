@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
-import Config from '../config/app.config';
+import AppConfig from '../config/app.config';
 
 class JWT_AUTH {
 
@@ -19,7 +19,7 @@ class JWT_AUTH {
             const token = bearerHeader.split(' ')[1];
 
             // Checking authenticity of token
-            jwt.verify(token, Config.JWT_KEY, (err: any, payload: any) => {
+            jwt.verify(token, AppConfig.JWT_KEY, (err: any, payload: any) => {
                 if (!err) {
                     res.locals = payload;
                     next();

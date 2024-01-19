@@ -1,5 +1,5 @@
 import express, { Router } from 'express';
-import UserProfile from '../controllers/user.module';
+import UserProfile from '../services/user.module';
 import JWT_AUTH from '../middlewares/auth.middleware';
 
 const userRoute: Router = express.Router();
