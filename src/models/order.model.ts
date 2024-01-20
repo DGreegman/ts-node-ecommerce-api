@@ -12,16 +12,6 @@ const orderSchema = new Schema({
         required: true
     },
 
-    quantity: {
-        type: Number,
-        required: true
-    },
-
-    amount: {
-        type: Number,
-        required: true
-    },
-
     deliveryAddress: {
         type: String,
         required: true

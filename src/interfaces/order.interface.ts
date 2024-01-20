@@ -15,7 +15,6 @@ type ProdutType = IProducts;
 interface IOrders extends Document {
     products:Array<ProdutType>[];
     user: Types.ObjectId;
-    amount: number;
     deliveryAddress: string;
     totalFee: number;
     paymentMethod: EPaymentMethods;

@@ -32,7 +32,7 @@ class Purchases {
                     $set: {
                         walletBalance: currentBalance
                     }
-                }).then(async (): Promise<void> => {
+                }).then(async ()=> {
 
                     // Log Order
                     await Orders.create({
@@ -48,7 +48,6 @@ class Purchases {
                             txRef: order._id,
                             user: order.user
                         });
-
 
                         // Complete transaction
                         return res.status(201).json({
@@ -92,7 +91,7 @@ class Purchases {
         const user = res.locals.payload._id;
 
         try {
-            await Products.findById({ user })
+            await Orders.find({ user },{user:0})
                 .then((order: Buffer | any) => {
                     if (order.length !== 0) {
                         return res.status(200).json({
