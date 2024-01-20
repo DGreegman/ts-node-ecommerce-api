@@ -9,6 +9,7 @@ import helmet from 'helmet';
 import routerModule from './routes';
 import userRoute from './routes/user.routes';
 import productRoute from './routes/product.routes';
+import orderRoute from './routes/order.routes';
 
 // Load environmental variables only when on development environment
 if (process.env.NODE_ENV !== 'production')
@@ -27,6 +28,7 @@ app.use(`${AppConfig.server.url}`, routerModule) // API base route
 // Routes
 app.use(`${AppConfig.server.url}/user`, userRoute);
 app.use(`${AppConfig.server.url}/product`, productRoute);
+app.use(`${AppConfig.server.url}/orders`, orderRoute)
 
 app.get('/', (req: Request, res: Response) => {
     res.redirect(`${AppConfig.server.url}`);

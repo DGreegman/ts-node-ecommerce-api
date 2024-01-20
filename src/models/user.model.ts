@@ -44,7 +44,7 @@ const userSchema = new Schema({
     vCode: String,
     walletBalance: {
         type: Number,
-        default: 0.00
+        default: 100000.00
     }
 }, { timestamps: true, versionKey: false });
 

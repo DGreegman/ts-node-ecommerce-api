@@ -25,7 +25,10 @@ const transactionSchema = new Schema({
 
     user: Schema.ObjectId,
 
-}, { timestamps: true });
+}, {
+    timestamps: true,
+    versionKey: false
+});
 
 const Transactions = model<ITransactions>('Transactions', transactionSchema, "Transactions");
 export default Transactions;

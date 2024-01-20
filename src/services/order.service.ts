@@ -1,23 +1,20 @@
 import { Request, Response } from "express";
-import mongoose from "mongoose";
 import Transactions from '../models/transaction.model';
 import Orders from "../models/order.model";
 import Users from "../models/user.model";
 import IOrders from "../interfaces/order.interface";
+import Products from "../models/product.model";
 
-class OrderModule {
-
-
+class Purchases {
     constructor() { }
 
-    // Placing new orders
-    async create(req: Request, res: Response) {
+    /**
+     * @desc Placing new order 
+     **/
+    async place(req: Request, res: Response) {
 
         const userID = res.locals.payload._id;
         const { }: IOrders = req.body;
-
-        // Initializing transaction
-        // const session = await mongoose.startSession();
 
         try {
             // Get wallet balance
@@ -64,12 +61,7 @@ class OrderModule {
                             message: 'Invalid payment method'
                         });
 
-                    }).catch((e: any) => {
-                        return res.status(409).json({
-                            status: false,
-                            message: 'Invalid payment method'
-                        });
-                    });
+                    })
                 });
 
             } else {
@@ -87,10 +79,38 @@ class OrderModule {
     };
 
     // Funding of wallet
-    async fundWallet(req: Request, res: Response) { }
+    async fundWallet(req: Request, res: Response) {
+        res.status(501).json({
+            message: 'Not Implemented: Comming soon'
+        })
+    }
 
-    // View all 
-    async list(req: Request, res: Response) { }
+    /**
+     * @desc Order Listings
+     */
+    async list(req: Request, res: Response) {
+        const user = res.locals.payload._id;
+
+        try {
+            await Products.findById({ user })
+                .then((order: Buffer | any) => {
+                    if (order.length !== 0) {
+                        return res.status(200).json({
+                            status: true,
+                            product: order
+                        });
+                    }
+                    res.status(206).json({
+                        message: "You haven\'t placed any order"
+                    });
+                });
+        } catch (e: Error | any) {
+            return res.status(500).json({
+                status: false,
+                message: `Something went wrong ${e.message}`
+            })
+        }
+    }
 };
 
-export default OrderModule;
+export default Purchases;

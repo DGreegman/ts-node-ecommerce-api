@@ -1,5 +1,6 @@
 import { Document, Types } from 'mongoose';
 import { EPaymentMethods, ETransactionTypes } from './transaction.interface';
+import IProducts from './product.interface';
 
 
 enum EStatus {
@@ -9,13 +10,13 @@ enum EStatus {
     CANCELLED = 'CANCELLED'
 }
 
+type ProdutType = IProducts;
+
 interface IOrders extends Document {
+    products:Array<ProdutType>[];
     user: Types.ObjectId;
-    quantity: number;
     amount: number;
     deliveryAddress: string;
-    deliveryTime?: Date;
-    deliveryFee?: number;
     totalFee: number;
     paymentMethod: EPaymentMethods;
     type: ETransactionTypes;

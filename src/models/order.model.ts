@@ -3,7 +3,10 @@ import IOrders, { EStatus } from "../interfaces/order.interface";
 import { EPaymentMethods, ETransactionTypes } from "../interfaces/transaction.interface";
 
 const orderSchema = new Schema({
-
+    products: {
+        type: Schema.Types.Array,
+        required: true
+    },
     user: {
         type: Schema.Types.ObjectId,
         required: true
@@ -24,9 +27,6 @@ const orderSchema = new Schema({
         required: true
     },
 
-    deliveryTime: Date,
-    deliveryFee: Number,
-
     totalFee: {
         type: Number,
         required: true
@@ -34,7 +34,7 @@ const orderSchema = new Schema({
     paymentMethod: {
         type: String,
         enum: Object.values(EPaymentMethods),
-        default:EPaymentMethods.WALLET
+        default: EPaymentMethods.WALLET
     },
 
     type: {
@@ -44,12 +44,15 @@ const orderSchema = new Schema({
         required: true
     },
 
-    status:{
+    status: {
         type: String,
         enum: Object.values(EStatus),
         default: EStatus.PROCESSING
     }
-},{timestamps:true});
+}, {
+    timestamps: true,
+    versionKey: false
+});
 
 const Orders = model<IOrders>('Orders', orderSchema, 'Purchases');
 export default Orders;

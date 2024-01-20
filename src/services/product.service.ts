@@ -55,13 +55,10 @@ class Product {
         message: `Something went wrong ${e.message}`
       })
     }
-    res.status(201).json({
-      status: true,
-      message: "Product Added"
-    });
   }
 
-  // Update one
+  /** 
+   * @desc Update one **/
   async update(req: Request, res: Response) {
     const { }: IProduct = req.body;
 
@@ -120,7 +117,8 @@ class Product {
     }
   }
 
-  // Delete Product
+  /** 
+   * @desc Delete Product**/
   async remove(req: Request, res: Response) {
     try {
       await Products.findByIdAndDelete(req.params.id)
