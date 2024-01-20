@@ -52,7 +52,9 @@ class UserProfile {
               // sendSMS(newUser.telephone, '_VERIFICATION', newUser.vCode);
               return res.status(201).json({
                 status: true,
-                user: data._id
+                user: data._id,
+                vCode: data.vCode,
+                message: "Verification Code sent"
               });
 
               // Checking for validation errors

@@ -19,6 +19,11 @@ const AppConfig: any = {
         port: process.env.PORT || 5100,
         url: process.env.BASE_API_URL
     },
+    SMS:{
+        accountSID: process.env.TWILIO_ACCOUNT_SID,
+        authToken:process.env.TWILIO_AUTH_TOKEN,
+        sender: process.env.SENDER
+    },
     JWT_KEY: process.env.JWT_SECRET
 }
 
