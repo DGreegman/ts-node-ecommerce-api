@@ -22,3 +22,15 @@ run `yarn install` to install fependencies following with `yarn dev` to start th
 
 ## API ENDPOINTS
 ### User Registration
+User registration process
+User registers with Telephone number using E.166 ISO format `+<dial-code><MSSID>`
+
+A verification code will be sent via sms to the recipient number. 
+
+After validation of the code, the final step of registration continues where the user enters its personal information. Upon successful creation of account a wallet will created for the user in order to make purchase. 
+
+For the sake of this demo the wallet was credited with NGN1,000,000 in order to be able to make make purchases. 
+
+All routes are protected using token based authentication and authorization logic. 
+
+Upon successful user login a token is authorized where the user can pass in to the header for accessing other secured endpoints. 
