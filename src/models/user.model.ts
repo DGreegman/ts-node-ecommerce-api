@@ -1,6 +1,5 @@
 import { Schema, model } from "mongoose";
-import IUser, { ICategory } from "../interfaces/Users";
-import IGasCylinder from "../interfaces/GasCylinder";
+import IUser from "../interfaces/Users";
 
 const userSchema = new Schema({
     firstName: String,
@@ -34,7 +33,6 @@ const userSchema = new Schema({
         type: Boolean,
         default: false
     },
-    Cylinders: Array<IGasCylinder>,
     password: {
         type: String,
         minlength: [6, 'Password too short']
@@ -43,19 +41,12 @@ const userSchema = new Schema({
         type: String,
         required: true
     },
-    referralID: String,
-    pin: String,
     vCode: String,
-    userType: {
-        type: String,
-        enum: Object.values(ICategory),
-        default: ICategory.HOUSEHOLD
-    },
     walletBalance: {
-        type:Number,
+        type: Number,
         default: 0.00
     }
-}, { timestamps: true });
+}, { timestamps: true, versionKey: false });
 
 
 const Users = model<IUser>("Users", userSchema, 'Customers');

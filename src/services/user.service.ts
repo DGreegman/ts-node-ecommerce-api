@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import crypto from 'crypto';
-import sendSMS from "./sms.module";
+// import sendSMS from "./sms.service";
 import Users from "../models/user.model";
 import IUser from "../interfaces/Users";
 import { hashSync, compareSync } from "bcryptjs";
@@ -18,7 +18,6 @@ const jwt = new JWT_AUTH;
 class UserProfile {
 
   private userID: any;
-
   private Customer: any;
 
   constructor() { this.profileInfo };
@@ -63,11 +62,6 @@ class UserProfile {
                   return res.status(406).json({
                     status: false,
                     message: e.errors['telephone'].message
-                  });
-                } else if (e.errors['userType']) {
-                  return res.status(406).json({
-                    status: false,
-                    message: e.errors['userType'].message
                   });
                 }
               }
@@ -174,22 +168,15 @@ class UserProfile {
         telephone,
         email,
         stateResidence,
-        GasCylinder,
         homeAddress,
-        pin,
         password
       }: IUser = req.body;
 
       // Encrypting sensitive information
       (password) ? req.body.password = hashSync(password, 3) : {};
-      (pin) ? req.body.pin = hashSync(pin, 3) : {};
-
-      // This applies when initiating gas cylinder
-      (GasCylinder) ? this.Customer.GasCylinder = GasCylinder : {};
-
     }
     else {
-      const { firstName, lastName, email, referralID, pin, password }: IUser = req.body;
+      const { firstName, lastName, email, password }: IUser = req.body;
       this.userID = req.params.id;
 
       // Validating length of password
@@ -202,7 +189,6 @@ class UserProfile {
 
       // Encrypting sensitive information
       (password) ? req.body.password = hashSync(password, 3) : {};
-      (pin) ? req.body.pin = hashSync(pin, 3) : {};
     }
 
     this.Customer = req.body;
@@ -229,7 +215,12 @@ class UserProfile {
           // Error validation
           if (e.name === 'ValidationError') {
 
-            if (e.errors['password']) {
+            if (e.errors['telephone']) {
+              return res.status(406).json({
+                status: false,
+                message: e.errors['telephone'].message
+              });
+            } else if (e.errors['password']) {
               return res.status(406).json({
                 status: false,
                 message: e.errors['password'].message
@@ -261,7 +252,6 @@ class UserProfile {
    */
   deleteAccount = async (req: Request, res: Response) => {
 
-    // You can also use req.bearer.payload._id
     this.userID = res.locals.payload._id;  // Serialized JWToken
 
     try {
@@ -274,7 +264,7 @@ class UserProfile {
             });
           }
 
-          // Remoing orders and transaction history
+          // Removing orders and transaction history
           await Orders.deleteMany({ user: this.userID })
             .then(async () => {
               await Transactions.deleteMany({ user: this.userID })
@@ -301,7 +291,6 @@ class UserProfile {
       await Users.findOne({ telephone }, {
         _id: 1,
         password: 1,
-        userType: 1,
         isVerified: 1,
         firstName: 1
       })
@@ -320,7 +309,6 @@ class UserProfile {
                 status: true,
                 isLoggedIn: true,
                 firstName: user.firstName,
-                userType: user.userType,
                 token
               });
             } else {

@@ -1,5 +1,5 @@
 import express, { Router } from 'express';
-import UserProfile from '../services/user.module';
+import UserProfile from '../services/user.service';
 import JWT_AUTH from '../middlewares/auth.middleware';
 
 const userRoute: Router = express.Router();
@@ -20,13 +20,13 @@ userRoute
     .patch(auth.VERIFY_AUTH_TOKEN, user.updateProfile)
 
     // Delete account
-    .delete(auth.VERIFY_AUTH_TOKEN, user.deleteAccount);
+    .delete(auth.VERIFY_AUTH_TOKEN, user.deleteAccount)
 
-// User registration
-userRoute.post('/register', user.create);
+    // User registration
+    .post(user.create);
 
 userRoute
-    .route('/register/:id')
+    .route('/:id')
 
     // Validate verification code
     .post(user.verify)

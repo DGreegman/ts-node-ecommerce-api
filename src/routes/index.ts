@@ -1,6 +1,6 @@
 import { Router, Request, Response } from 'express';
-import UserProfile from '../services/user.module';
-import OrderModule from '../services/order.module';
+import UserProfile from '../services/user.service';
+import OrderModule from '../services/order.service';
 import JWT_AUTH from '../middlewares/auth.middleware';
 
 const user = new UserProfile;
@@ -10,7 +10,7 @@ const jwt = new JWT_AUTH();
 
 /**API base route */
 routerModule.get('', (req: Request, res: Response) => {
-    res.status(200).json({ message: 'Welcome to the gassed API' })
+    res.status(200).json({ message: 'Welcome to the eCommerce API\nensure you read the API docs before you continue' })
 });
 
 // User Login

@@ -1,23 +1,13 @@
-import { Document, Types } from 'mongoose';
-import IGasCylinder from './GasCylinder';
-
-export enum ICategory {
-    HOUSEHOLD = 'HOUSEHOLD',
-    COMMERCIAL = 'COMMERCIAL'
-}
+import { Document } from 'mongoose';
 
 interface IUser extends Document {
-    firstName?: string;
-    lastName?: string;
+    firstName: string;
+    lastName: string;
     telephone: string;
-    homeAddress: string;
+    homeAddress?: string;
     stateResidence: string;
-    email?: string;
-    userType: ICategory;
-    GasCylinder: [IGasCylinder];
-    pin: string;
-    password?: string;
-    referralID?: string;
+    email: string;
+    password: string;
     vCode?:string;
 }
 
