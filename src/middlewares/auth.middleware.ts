@@ -2,14 +2,14 @@ import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 import AppConfig from '../config/app.config';
 
-class JWT_AUTH {
+class Guard {
 
 	constructor() { };
 
 	/**
 	 * Verify Customer token
 	 */
-	VERIFY_AUTH_TOKEN = (req: Request, res: Response, next: NextFunction,) => {
+	VERIFY_AUTH_TOKEN (req: Request, res: Response, next: NextFunction,){
 
 		// Extraction of token from the request header
 		const bearerHeader = req.headers['authorization'];
@@ -77,11 +77,11 @@ class JWT_AUTH {
 	 * @param {string} key - JWT Secret key
 	 * @return - Base64 string
 	 */
-	SIGN_AUTH_TOKEN = (payload: object | string | Buffer, key: string) => {
+	SIGN_AUTH_TOKEN (payload: object | string | Buffer, key: string) {
 		return jwt.sign({ payload }, key, {
 			expiresIn: '1d'
 		});
 	}
 }
 
-export default JWT_AUTH;
+export default Guard;

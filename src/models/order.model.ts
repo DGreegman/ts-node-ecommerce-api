@@ -1,6 +1,6 @@
 import { Schema, model } from "mongoose";
-import IOrders, { EStatus } from "../interfaces/Orders";
-import { EPaymentMethods, ETransactionTypes } from "../interfaces/Transactions";
+import IOrders, { EStatus } from "../interfaces/order.interface";
+import { EPaymentMethods, ETransactionTypes } from "../interfaces/transaction.interface";
 
 const orderSchema = new Schema({
 

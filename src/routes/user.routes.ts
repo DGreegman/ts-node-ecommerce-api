@@ -1,10 +1,10 @@
 import express, { Router } from 'express';
 import UserProfile from '../services/user.service';
-import JWT_AUTH from '../middlewares/auth.middleware';
+import Guard from '../middlewares/auth.middleware';
 
 const userRoute: Router = express.Router();
 const user = new UserProfile;
-const auth = new JWT_AUTH;
+const auth = new Guard;
 
 /**
  * Handling user profile operations

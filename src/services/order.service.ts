@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 import Transactions from '../models/transaction.model';
 import Orders from "../models/order.model";
 import Users from "../models/user.model";
-import IOrders from "../interfaces/Orders";
+import IOrders from "../interfaces/order.interface";
 
 class OrderModule {
 

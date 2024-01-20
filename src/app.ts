@@ -3,11 +3,12 @@ import AppConfig from './config/app.config';
 import cors from 'cors';
 import { configDotenv } from 'dotenv';
 import './config/app.server';
-import routerModule from './routes';
+import helmet from 'helmet';
 
 //Router Modules
+import routerModule from './routes';
 import userRoute from './routes/user.routes';
-import helmet from 'helmet';
+import productRoute from './routes/product.routes';
 
 // Load environmental variables only when on development environment
 if (process.env.NODE_ENV !== 'production')
@@ -25,6 +26,7 @@ app.use(`${AppConfig.server.url}`, routerModule) // API base route
 
 // Routes
 app.use(`${AppConfig.server.url}/user`, userRoute);
+app.use(`${AppConfig.server.url}/product`, productRoute);
 
 app.get('/', (req: Request, res: Response) => {
     res.redirect(`${AppConfig.server.url}`);

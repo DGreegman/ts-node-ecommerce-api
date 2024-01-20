@@ -1,5 +1,5 @@
 import { Document, Types } from 'mongoose';
-import { EPaymentMethods, ETransactionTypes } from './Transactions';
+import { EPaymentMethods, ETransactionTypes } from './transaction.interface';
 
 
 enum EStatus {

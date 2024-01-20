@@ -2,15 +2,15 @@ import { Request, Response } from "express";
 import crypto from 'crypto';
 // import sendSMS from "./sms.service";
 import Users from "../models/user.model";
-import IUser from "../interfaces/Users";
+import IUser from "../interfaces/user.interface";
 import { hashSync, compareSync } from "bcryptjs";
-import JWT_AUTH from "../middlewares/auth.middleware";
+import Guard from "../middlewares/auth.middleware";
 import AppConfig from "../config/app.config";
 import Orders from "../models/order.model";
 import Transactions from "../models/transaction.model";
 
 
-const jwt = new JWT_AUTH;
+const jwt = new Guard;
 
 /**
  * Gassed User Operations

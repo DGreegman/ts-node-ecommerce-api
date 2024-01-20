@@ -1,12 +1,12 @@
 import { Router, Request, Response } from 'express';
 import UserProfile from '../services/user.service';
 import OrderModule from '../services/order.service';
-import JWT_AUTH from '../middlewares/auth.middleware';
+import Guard from '../middlewares/auth.middleware';
 
 const user = new UserProfile;
 const routerModule: Router = Router();
 const order = new OrderModule();
-const jwt = new JWT_AUTH();
+const jwt = new Guard();
 
 /**API base route */
 routerModule.get('', (req: Request, res: Response) => {

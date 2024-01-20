@@ -1,5 +1,5 @@
 import { Schema, model } from "mongoose";
-import ITransactions, { ETransactionTypes, EPaymentMethods } from "../interfaces/Transactions";
+import ITransactions, { ETransactionTypes, EPaymentMethods } from "../interfaces/transaction.interface";
 
 // Logs various aspects of transactions tied to a user
 const transactionSchema = new Schema({
