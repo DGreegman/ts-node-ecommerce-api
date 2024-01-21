@@ -8,7 +8,7 @@ https://github.com/potterinc/ts-node-ecommerce-api.git
 https://ts-node-ecommerce.onrender.com/
 
 ## API Documentation:
-https://www.postman.com/:publicHandle/workspace/ecommerce/overview
+https://www.postman.com/harryp30/workspace/ecommerce
 
 ## Starting the application
 to run this application on your local machine using local environment
