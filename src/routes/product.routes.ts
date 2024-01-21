@@ -20,6 +20,9 @@ productRoute
 productRoute
   .route('/:id')
 
+  // View product
+  .get(product.view)
+
   // Delete product
   .delete(guard.VERIFY_AUTH_TOKEN, product.remove)
 

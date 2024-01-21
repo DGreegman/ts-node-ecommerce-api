@@ -138,6 +138,36 @@ class Product {
       })
     }
   }
+
+  /**
+   * @desc View one product
+   */
+  async view(req: Request, res: Response) {
+    try {
+      await Products.findById(req.params.id,
+        { _id: 0, createdAt: 0, updatedAt: 0 })
+        .then((product: Object | Buffer | any) => {
+          if (product) {
+
+            return res.status(200).json({
+              status: true,
+              product,
+            })
+          } else {
+            return res.status(404).json({
+              status: false,
+              message: 'Product not found',
+            });
+          }
+        })
+    }
+    catch (e: Error | any) {
+      return res.status(500).json({
+        status: false,
+        message: `Something went wrong ${e.name}`
+      });
+    }
+  }
 };
 
 export default Product;
